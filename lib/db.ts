@@ -17,4 +17,24 @@ export async function initDb() {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `;
+
+  await sql`
+    ALTER TABLE visits
+    ADD COLUMN IF NOT EXISTS ip TEXT;
+  `;
+
+  await sql`
+    ALTER TABLE visits
+    ADD COLUMN IF NOT EXISTS country TEXT;
+  `;
+
+  await sql`
+    ALTER TABLE visits
+    ADD COLUMN IF NOT EXISTS region TEXT;
+  `;
+
+  await sql`
+    ALTER TABLE visits
+    ADD COLUMN IF NOT EXISTS city TEXT;
+  `;
 }

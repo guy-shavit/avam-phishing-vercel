@@ -15,6 +15,10 @@ type UnitRow = {
 
 type RecentRow = {
   unit: string;
+  ip: string;
+  country: string;
+  region: string;
+  city: string;
   created_at_il: string;
 };
 
@@ -61,18 +65,22 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
     ORDER BY COUNT(*) DESC;
   `) as UnitRow[];
 
-  const recent = (await sql`
-    SELECT
-      unit,
-      to_char(
-        (created_at AT TIME ZONE 'UTC') AT TIME ZONE 'Asia/Jerusalem',
-        'DD/MM/YYYY HH24:MI:SS'
-      ) AS created_at_il
-    FROM visits
-    WHERE campaign = ${campaign}
-    ORDER BY created_at DESC
-    LIMIT 30;
-  `) as RecentRow[];
+const recent = (await sql`
+  SELECT
+    unit,
+    COALESCE(ip, 'unknown') AS ip,
+    COALESCE(country, 'unknown') AS country,
+    COALESCE(region, 'unknown') AS region,
+    COALESCE(city, 'unknown') AS city,
+    to_char(
+      (created_at AT TIME ZONE 'UTC') AT TIME ZONE 'Asia/Jerusalem',
+      'DD/MM/YYYY HH24:MI:SS'
+    ) AS created_at_il
+  FROM visits
+  WHERE campaign = ${campaign}
+  ORDER BY created_at DESC
+  LIMIT 30;
+`) as RecentRow[];
 
   const totalClicks = totalClicksResult[0]?.count || "0";
   const unitsCount = unitsCountResult[0]?.count || "0";
@@ -127,7 +135,11 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
           <table>
             <thead>
               <tr>
-                <th>יחידה</th>
+                 <th>יחידה</th>
+                <th>IP</th>
+                <th>מדינה</th>
+                <th>אזור</th>
+                <th>עיר</th>
                 <th>זמן כניסה</th>
               </tr>
             </thead>
@@ -135,12 +147,16 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
             <tbody>
               {recent.length === 0 ? (
                 <tr>
-                  <td colSpan={2}>אין כניסות עדיין</td>
+                  <td colSpan={6}>אין כניסות עדיין</td>
                 </tr>
               ) : (
                 recent.map((row, index) => (
                   <tr key={index}>
                     <td>{row.unit}</td>
+                    <td>{row.ip}</td>
+                    <td>{row.country}</td>
+                    <td>{row.region}</td>
+                    <td>{row.city}</td>
                     <td>{row.created_at_il}</td>
                   </tr>
                 ))
