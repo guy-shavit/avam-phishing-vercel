@@ -1,65 +1,65 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
+  const searchParams = useSearchParams();
+
+  const unit = searchParams.get("u") || "unknown";
+  const campaign = "training1";
+
+  useEffect(() => {
+    fetch("/api/visit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ campaign, unit }),
+    });
+  }, [campaign, unit]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="main-page">
+      <section className="card">
+        <div className="center">
+          <div className="badge">תרגיל אב״מ רשמי ✅</div>
+
+          <div className="emoji">🎣</div>
+
+          <h1 className="title">אופס… הדג כמעט נתפס!</h1>
+
+          <p className="subtitle">
+            נכנסת לקישור שנשלח אליך. הפעם זה היה תרגיל לימודי,
+            אבל בעולם האמיתי זה יכול היה להיות פישינג.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="warning-box">
+          <h2>מה קרה כאן?</h2>
+          <ul>
+            <li>📩 קיבלת הודעה קצרה עם קישור.</li>
+            <li>👀 הקישור נראה יחסית תמים.</li>
+            <li>⚡ לחצת מהר לפני בדיקה מלאה.</li>
+            <li>🔒 בתרגיל הזה לא נאסף מידע רגיש.</li>
+          </ul>
         </div>
-      </main>
-    </div>
+
+        <div className="rules-box">
+          <h2>לפני קליק — עצירת אב״מ 🛑</h2>
+          <ul>
+            <li>מי שלח את ההודעה?</li>
+            <li>האם ציפיתי לקישור הזה?</li>
+            <li>האם הקישור נראה מוזר?</li>
+            <li>האם מבקשים ממני להזין פרטים?</li>
+            <li>אם יש ספק — מדווחים ולא לוחצים.</li>
+          </ul>
+        </div>
+
+        <p className="footer-note">
+          אין מה להילחץ. לא נכשלת — למדת. בפעם הבאה הדג נשאר בים 🐟
+        </p>
+      </section>
+    </main>
   );
 }
