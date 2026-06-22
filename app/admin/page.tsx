@@ -101,8 +101,8 @@ const recent = (await sql`
         <div className="admin-card">
           <h2>כניסות לפי יחידה</h2>
 
-          <table>
-            <thead>
+            <table className="units-table">
+                <thead>
               <tr>
                 <th>יחידה</th>
                 <th>כניסות</th>
@@ -127,15 +127,14 @@ const recent = (await sql`
         </div>
 
         <div className="admin-card">
-          <h2>30 הכניסות האחרונות</h2>
+          <h2>הכניסות האחרונות</h2>
           <p>
             השעות מוצגות לפי שעון ישראל.
           </p>
 
-          <table>
-            <thead>
+          <table className="recent-table">            <thead>
               <tr>
-                 <th>יחידה</th>
+                <th>שם</th>
                 <th>IP</th>
                 <th>מדינה</th>
                 <th>אזור</th>

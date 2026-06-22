@@ -204,3 +204,418 @@ code {
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+.attack-page {
+  min-height: 100vh;
+  padding: 24px;
+  direction: rtl;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background:
+    radial-gradient(circle at top, rgba(255, 0, 0, 0.38), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(0, 110, 40, 0.2), transparent 32%),
+    linear-gradient(160deg, #030000 0%, #180000 45%, #050505 100%);
+}
+
+.attack-card {
+  width: 100%;
+  max-width: 1050px;
+  background: rgba(12, 0, 0, 0.95);
+  border: 1px solid rgba(255, 70, 70, 0.5);
+  border-radius: 30px;
+  padding: 34px;
+  box-shadow:
+    0 0 55px rgba(255, 0, 0, 0.28),
+    inset 0 0 35px rgba(255, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.attack-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.attack-warning-bar {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(90deg, #ff0000, #700000, #ff0000);
+  border-radius: 999px;
+  padding: 13px 22px;
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: white;
+  box-shadow: 0 0 24px rgba(255, 0, 0, 0.55);
+  animation: warningPulse 1s infinite;
+}
+
+.attack-hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 28px;
+}
+
+.attack-flags {
+  font-size: 90px;
+  margin-bottom: 12px;
+  animation: boomShake 1.1s infinite;
+}
+
+.attack-title {
+  font-size: 56px;
+  line-height: 1.15;
+  margin: 10px 0 18px;
+  color: #ff3b3b;
+  font-weight: 1000;
+  text-shadow:
+    0 0 18px rgba(255, 0, 0, 0.65),
+    0 0 45px rgba(255, 0, 0, 0.32);
+}
+
+.attack-subtitle {
+  max-width: 860px;
+  margin: 0 auto;
+  font-size: 22px;
+  line-height: 1.9;
+  color: #ffe0e0;
+}
+
+.breach-box {
+  position: relative;
+  z-index: 1;
+  margin-top: 30px;
+  padding: 24px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #430000, #1e0000);
+  border-right: 8px solid #ff2626;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+}
+
+.breach-box h2 {
+  margin-top: 0;
+  color: #ff8a8a;
+  font-size: 28px;
+}
+
+.breach-box p {
+  font-size: 19px;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.attack-grid {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.attack-panel {
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.attack-panel.red {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: rgba(255, 60, 60, 0.32);
+}
+
+.attack-panel h3 {
+  margin-top: 0;
+  color: #ffd1d1;
+  font-size: 24px;
+}
+
+.attack-panel ul {
+  margin: 0;
+  padding-right: 22px;
+}
+
+.attack-panel li {
+  margin: 11px 0;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.critical-box {
+  position: relative;
+  z-index: 1;
+  margin-top: 24px;
+  padding: 26px;
+  border-radius: 24px;
+  background: rgba(255, 0, 0, 0.16);
+  border: 1px solid rgba(255, 80, 80, 0.35);
+  text-align: center;
+}
+
+.critical-box h2 {
+  margin: 0 0 12px;
+  font-size: 38px;
+  color: #ff4d4d;
+}
+
+.critical-box p {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+@keyframes warningPulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.55);
+  }
+}
+
+@keyframes boomShake {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+  }
+
+  25% {
+    transform: translateX(-4px) scale(1.04);
+  }
+
+  50% {
+    transform: translateX(4px) scale(1.1);
+  }
+
+  75% {
+    transform: translateX(-3px) scale(1.04);
+  }
+}
+
+@media (max-width: 850px) {
+  .attack-title {
+    font-size: 36px;
+  }
+
+  .attack-subtitle {
+    font-size: 18px;
+  }
+
+  .attack-flags {
+    font-size: 62px;
+  }
+
+  .attack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attack-card {
+    padding: 24px;
+  }
+}
+
+.flag-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 18px;
+}
+
+.iran-flag {
+  width: 260px;
+  height: 150px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 0 28px rgba(255, 0, 0, 0.45),
+    0 12px 28px rgba(0, 0, 0, 0.45);
+  animation: boomShake 1.1s infinite;
+}
+
+.flag-green,
+.flag-white,
+.flag-red {
+  height: 33.333%;
+  width: 100%;
+}
+
+.flag-green {
+  background: #239f40;
+}
+
+.flag-white {
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flag-white span {
+  color: #da0000;
+  font-size: 34px;
+  font-weight: 900;
+  font-family: Arial, sans-serif;
+}
+
+.flag-red {
+  background: #da0000;
+}
+
+.boom {
+  font-size: 80px;
+  animation: boomShake 1.1s infinite;
+}
+
+@media (max-width: 700px) {
+  .flag-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .iran-flag {
+    width: 210px;
+    height: 120px;
+  }
+
+  .boom {
+    font-size: 58px;
+  }
+}
+
+/* Admin mobile improvements */
+@media (max-width: 760px) {
+  .admin-page {
+    padding: 14px;
+  }
+
+  .admin-container {
+    width: 100%;
+  }
+
+  .admin-card {
+    padding: 18px;
+    border-radius: 20px;
+    overflow-x: hidden;
+  }
+
+  .admin-card h1 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .admin-card h2 {
+    font-size: 22px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .metric {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .metric-value {
+    font-size: 44px;
+  }
+
+  .metric-title {
+    font-size: 16px;
+  }
+
+  .danger-button {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table,
+  table tbody,
+  table tr,
+  table td {
+    display: block;
+    width: 100%;
+  }
+
+  table tr {
+    background: #ffffff;
+    margin-bottom: 14px;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  }
+
+  table td {
+    border-bottom: 1px solid #eef2f7;
+    padding: 10px 4px;
+    text-align: right;
+    word-break: break-word;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+
+  table td::before {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  .units-table td:nth-child(1)::before {
+    content: "יחידה";
+  }
+
+  .units-table td:nth-child(2)::before {
+    content: "כניסות";
+  }
+
+  .recent-table td:nth-child(1)::before {
+    content: "יחידה";
+  }
+
+  .recent-table td:nth-child(2)::before {
+    content: "IP";
+  }
+
+  .recent-table td:nth-child(3)::before {
+    content: "מדינה";
+  }
+
+  .recent-table td:nth-child(4)::before {
+    content: "אזור";
+  }
+
+  .recent-table td:nth-child(5)::before {
+    content: "עיר";
+  }
+
+  .recent-table td:nth-child(6)::before {
+    content: "זמן כניסה";
+  }
+}
