@@ -1,26 +1,21 @@
-"use client";
+import VisitTracker from "./components/VisitTracker";
 
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+type HomePageProps = {
+  searchParams: Promise<{
+    u?: string;
+  }>;
+};
 
-export default function Home() {
-  const searchParams = useSearchParams();
+export default async function Home({ searchParams }: HomePageProps) {
+  const params = await searchParams;
 
-  const unit = searchParams.get("u") || "unknown";
+  const unit = params.u || "unknown";
   const campaign = "training1";
-
-  useEffect(() => {
-    fetch("/api/visit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ campaign, unit }),
-    });
-  }, [campaign, unit]);
 
   return (
     <main className="main-page">
+      <VisitTracker campaign={campaign} unit={unit} />
+
       <section className="card">
         <div className="center">
           <div className="badge">תרגיל אב״מ רשמי ✅</div>
@@ -56,9 +51,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <p className="footer-note">
-          אין מה להילחץ. לא נכשלת — למדת. בפעם הבאה הדג נשאר בים 🐟
-        </p>
+
       </section>
     </main>
   );
